@@ -1,6 +1,8 @@
 use anyhow::{bail, Result};
+use clap::Parser;
 use core::panic;
 use lazy_regex::regex;
+use pdb::FallibleIterator;
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 use std::fs::File;
@@ -8,8 +10,6 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::time::Instant;
 use symbol::Symbol;
-use clap::Parser;
-use pdb::FallibleIterator;
 mod symbol;
 
 #[derive(Parser, Debug)]
