@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rivets = { git = "https://github.com/factorio-rivets/rivets" }
+rivets = { git = "https://github.com/factorio-rivets/rivets-crate" }
 lazy-regex = "3.2.0"
 pdb = "0.8.0"
 anyhow = "1.0.86"
