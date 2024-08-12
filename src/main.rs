@@ -864,7 +864,7 @@ impl<'a> DecompilationResult<'a> {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 /// Calling conventions for functions.
 /// <https://learn.microsoft.com/en-us/visualstudio/debugger/debug-interface-access/cv-call-e?view=vs-2022>
-pub enum CvCallE {
+enum CvCallE {
     CV_CALL_NEAR_C = 0x00,      // near right to left push, caller pops stack
     CV_CALL_FAR_C = 0x01,       // far right to left push, caller pops stack
     CV_CALL_NEAR_PASCAL = 0x02, // near left to right push, callee pops stack
@@ -898,12 +898,13 @@ pub enum CvCallE {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub struct CallingConvention(u8);
+struct CallingConvention(u8);
 
 impl CallingConvention {
     /// Returns the calling convention as a C++ string.
     /// <https://learn.microsoft.com/en-us/cpp/cpp/argument-passing-and-naming-conventions?view=msvc-170>
-    pub fn as_cpp(self) -> &'static str {
+    #[must_use]
+    fn as_cpp(self) -> &'static str {
         let cv = self.as_cvcall();
         match cv {
             CvCallE::CV_CALL_NEAR_C => "", // This is __cdecl. It's the default, so we don't need to specify it.
@@ -917,6 +918,7 @@ impl CallingConvention {
         }
     }
 
+    #[must_use]
     pub fn as_cvcall(self) -> CvCallE {
         match self.0 {
             0x00 => CvCallE::CV_CALL_NEAR_C,
@@ -946,7 +948,7 @@ impl CallingConvention {
             0x18 => CvCallE::CV_CALL_NEAR_VECTOR,
             0x19 => CvCallE::CV_CALL_SWIFT,
             0x20 => CvCallE::CV_CALL_RESERVED,
-            _ => panic!("Unknown calling convention: {}", self.0),
+            _ => todo!("Unsupported calling convention: {}", self.0),
         }
     }
 }
@@ -1208,7 +1210,7 @@ fn replace_pointers_to_errors(s: &str) -> String {
         }).into_owned()
 }
 
-pub fn generate(pdb_path: &Path, target: &str) -> Result<()> {
+fn generate(pdb_path: &Path, target: &str) -> Result<()> {
     let pdb = File::open(pdb_path)?;
     let mut pdb = pdb::PDB::open(pdb)?;
 
