@@ -447,7 +447,7 @@ checksum = "7a66a03ae7c801facd77a29370b4faec201768915ac14a721ba36f20bc9c209b"
 [[package]]
 name = "rivets"
 version = "0.1.0"
-source = "git+https://github.com/factorio-rivets/rivets-crate#f3d225e3490cec57af89ce5b898eeddf08a37aa1"
+source = "git+https://github.com/factorio-rivets/rivets-rs#f3d225e3490cec57af89ce5b898eeddf08a37aa1"
 dependencies = [
  "rivets-macros",
  "rivets-shared",
@@ -468,7 +468,7 @@ dependencies = [
 [[package]]
 name = "rivets-macros"
 version = "0.1.0"
-source = "git+https://github.com/factorio-rivets/rivets-crate#f3d225e3490cec57af89ce5b898eeddf08a37aa1"
+source = "git+https://github.com/factorio-rivets/rivets-rs#f3d225e3490cec57af89ce5b898eeddf08a37aa1"
 dependencies = [
  "anyhow",
  "darling",
@@ -482,7 +482,7 @@ dependencies = [
 [[package]]
 name = "rivets-shared"
 version = "0.1.0"
-source = "git+https://github.com/factorio-rivets/rivets-crate#f3d225e3490cec57af89ce5b898eeddf08a37aa1"
+source = "git+https://github.com/factorio-rivets/rivets-rs#f3d225e3490cec57af89ce5b898eeddf08a37aa1"
 dependencies = [
  "anyhow",
  "cpp_demangle",
